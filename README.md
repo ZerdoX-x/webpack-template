@@ -11,7 +11,7 @@ You only need [Node.js](https://nodejs.org) pre-installed and you’re good to g
 install using one of the ways below
 
 * `$ git clone https://github.com/ZerdoX-x/web-project-starter.git`
-* download [zip](https://github.com/ZerdoX-x/project/archive/master.zip)
+* download [zip](https://github.com/ZerdoX-x/webpack-template/archive/master.zip)
 
 ## Setup
 Install dependencies
