@@ -4,9 +4,27 @@
   "description": "This is my webpack template I use for each project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean:md": "rimraf */**/**.md"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "webpack",
+    "boilerplate",
+    "starter",
+    "template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZerdoX-x/webpack-template.git"
+  },
+  "homepage": "https://github.com/ZerdoX-x/webpack-template#readme",
+  "bugs": {
+    "url": "https://github.com/ZerdoX-x/webpack-template/issues",
+    "email": "zerdox.cool4@gmail.com"
+  },
+  "author": "zerdox",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "rimraf": "^3.0.0",
+  }
 }
