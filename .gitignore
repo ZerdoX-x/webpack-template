@@ -1,11 +1,11 @@
-build
-dist
-public
-dest
+build/
+dist/
+public/
+dest/
 
-node_modules
+node_modules/
 
-logs
+logs/
 *.log
 
 *.map
