@@ -1,4 +1,5 @@
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 const baseWebpackConfig = require('./webpack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -6,8 +7,11 @@ const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
+  devtool: '#@cheap-module-eval-source-map',
   plugins: [
-    new HtmlWebpackPlugin({
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[file].map'
+    }), new HtmlWebpackPlugin({
       template: 'src/views/index.html',
       minify: false,
     }), new HtmlBeautifyPlugin({
@@ -34,6 +38,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
+              sourceMap: true,
             }
           },
         ],
