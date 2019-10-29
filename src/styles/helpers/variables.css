@@ -1,0 +1,36 @@
+:root {
+  --main-font                 : 'Montserrat', Helvetica, Arial, sans-serif;
+  --headings-font             : 'Nunito Sans', Helvetica, Arial, sans-serif;
+  --main-font-color           : #101010;
+  --secondary-font-color      : #555;
+  --main-font-size            : 18px;
+  --main-font-weight          : 400;
+  --main-line-height          : 1.4;
+
+  --desktop-width             : 1280px;
+  --sm-desktop-width          : 980px;
+  --table-width               : 768px;
+  --phone-width               : 480px;
+  --sm-phone-width            : 320px;
+
+  --default-color             : #fff;
+  --primary-color             : #444ce0;
+  --success-color             : #26de81;
+  --process-color             : #a2a2a2;
+  --danger-color              : #fc5c65;
+  --warning-color             : #fed330;
+  --light-color               : #999999;
+  --purple-color              : #8854d0;
+  --main-bg-color             : #fff;
+  --primary-text-color        : #000;
+
+  --neutral-primary           : #303133;
+  --neutral-regular           : #606266;
+  --neutral-secondary         : #909399;
+  --neutral-placeholder       : #c0c4cc;
+
+  --border-base               : #dcdfe6;
+  --border-light              : #e4e7ed;
+  --border-lighter            : #ebeef5;
+  --border-lightex            : #f2f6fc;
+}

@@ -1,6 +1,8 @@
 @import "../assets/fonts/fonts-master.css";
+@import "./helpers/variables.css";
+@import "./base/reset.css";
+@import "./vendor/libs.css";
 
-.hello {
-  background-image: url("../assets/img/new/rose-blue-flower-rose-blooms-67636.jpg");
-  font-family: Roboto;
+body {
+  background-color: #000;
 }
