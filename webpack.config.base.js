@@ -1,16 +1,19 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: '[name].js',
+    filename: 'js/[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
+      filename: 'styles/[name].css',
+    }), new CopyWebpackPlugin([
+      { from: 'src/static/', to: '', ignore: ['*favicon*.*']},
+    ])
   ],
   module: {
     rules: [

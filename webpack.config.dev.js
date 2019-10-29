@@ -22,7 +22,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
             indent_with_tabs: false,
             indent_inner_html: false,
             preserve_newlines: false,
-            unformatted: ['p', 'i', 'b', 'span'],
+            unformatted: ['p', 'i', 'b', 's', 'span'],
           },
       },
       replace: [ ' type="text/javascript"' ],
