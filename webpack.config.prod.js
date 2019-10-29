@@ -1,20 +1,11 @@
-const path = require('path');
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const merge = require('webpack-merge');
+const baseWebpackConfig = require('./wepack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  // mode: 'development',
-  // devtool: 'source-map',
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
+const prodWebpackConfig = merge(baseWebpackConfig, {
+  mode: 'production',
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }), new HtmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       template: 'src/views/index.html',
       minify: {
         collapseWhitespace: true,
@@ -57,19 +48,11 @@ module.exports = {
             },
           },
         ],
-      }, {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[path][name].[ext]',
-              context: 'src/assets/fonts',
-              outputPath: 'fonts',
-            },
-          },
-        ],
       },
     ],
   },
-};
+});
+
+module.exports = new Promise((resolve, reject) => {
+  resolve(prodWebpackConfig)
+});

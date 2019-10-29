@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "clean:md": "rimraf */**/**.md"
+    "build": "webpack --config webpack.config.prod.js",
+    "dev": "webpack --config webpack.config.dev.js",
+    "clean:md": "rimraf src/**/*.md",
+    "clean:map": "rimraf dist/**/*.map",
+    "clean:dist": "rimraf dist/"
   },
   "keywords": [
     "webpack",
