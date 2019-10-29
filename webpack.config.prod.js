@@ -14,7 +14,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
         removeRedundantAttributes: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
+        useShortDoctype: true,
       },
     }),
   ],
@@ -28,7 +28,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-            }
+            },
           },
           'postcss-loader',
         ],
@@ -55,5 +55,5 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 });
 
 module.exports = new Promise((resolve, reject) => {
-  resolve(prodWebpackConfig)
+  resolve(prodWebpackConfig);
 });
