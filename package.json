@@ -51,7 +51,5 @@
     "webpack-merge": "^4.2.2",
     "xml-loader": "^1.2.1"
   },
-  "dependencies": {
-    "lodash": "^4.17.15"
-  }
+  "dependencies": {}
 }
