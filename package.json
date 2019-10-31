@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.prod.js",
-    "dev": "webpack --config webpack.config.dev.js",
+    "dev": "webpack-dev-server --open --progress --color --config webpack.config.dev.js",
+    "dev:no-server": "webpack --config webpack.config.dev.js",
     "clean:md": "rimraf src/**/*.md",
     "clean:map": "rimraf dist/**/*.map",
     "clean:dist": "rimraf dist/"
@@ -46,6 +47,7 @@
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
     "xml-loader": "^1.2.1"
   },

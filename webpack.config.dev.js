@@ -1,4 +1,5 @@
 const merge = require('webpack-merge');
+const path = require('path');
 const webpack = require('webpack');
 const baseWebpackConfig = require('./webpack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,6 +9,15 @@ const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
   devtool: '#@cheap-module-eval-source-map',
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    port: 8081,
+    host: '0.0.0.0',
+    overlay: {
+      warnings: true,
+      errors: true,
+    },
+  },
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map'
