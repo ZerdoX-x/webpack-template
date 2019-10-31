@@ -4,19 +4,25 @@
   "description": "This is my webpack template I use for each project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.prod.js",
     "dev": "webpack-dev-server --open --progress --color --config webpack.config.dev.js",
-    "dev:no-server": "webpack --config webpack.config.dev.js",
+    "*dev": "webpack --config webpack.config.dev.js",
+    "clean:dist": "rimraf dist/",
+    "clean:info": "rimraf info/",
     "clean:md": "rimraf src/**/*.md",
     "clean:map": "rimraf dist/**/*.map",
-    "clean:dist": "rimraf dist/"
+    "clean": "npm run clean:dist && npm run clean:info && npm run clean:md && npm run clean:map",
+    "info:stats": "make-dir info && webpack-cli --profile --json > info/stats.json || true",
+    "info:browsers": "make-dir info && browserslist > info/browserslist.txt",
+    "info:versions": "make-dir info && echo 'Node:' > info/versions.txt && node -v >> info/versions.txt && echo 'NPM:' >> info/versions.txt && npm -v >> info/versions.txt && echo 'Webpack:' >> info/versions.txt && webpack -v >> info/versions.txt",
+    "info": "npm run info:stats && npm run info:browsers && npm run info:versions"
   },
   "keywords": [
     "webpack",
     "boilerplate",
     "starter",
-    "template"
+    "template",
+    "front-end"
   ],
   "repository": {
     "type": "git",
@@ -41,6 +47,7 @@
     "html-beautify-webpack-plugin": "^1.0.5",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^6.0.0",
+    "make-dir-cli": "^2.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "postcss-loader": "^3.0.0",
     "rimraf": "^3.0.0",
