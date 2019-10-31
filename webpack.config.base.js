@@ -3,9 +3,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js',
+  },
   output: {
-    filename: 'js/[name].js',
+    filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
