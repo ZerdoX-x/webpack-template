@@ -54,6 +54,7 @@ a:not([class]) {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 /* Natural flow and rhythm in articles by default */
@@ -77,4 +78,41 @@ select {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Corrects block display not defined in IE6-9 & FF3 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary,
+main {
+  display: block;
+}
+
+/* Corrects inline-block display not defined in IE6-9 & FF3 */
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+/* Remove the gray background color from active links in IE 10. */
+a {
+  background: transparent;
+  text-decoration: none;
+}
+
+/* Removes default vertical scrollbar in IE6-9
+   Improves readability and alignment browsers */
+textarea {
+  overflow: auto;
+  vertical-align: top;
 }
