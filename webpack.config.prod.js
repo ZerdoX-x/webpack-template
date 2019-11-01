@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
@@ -16,6 +17,11 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true,
       },
+    }), new FaviconsWebpackPlugin({
+      logo: './src/static/favicon.png',
+      publicPath: '.',
+      prefix: 'favicon/',
+      outputPath: '/favicon',
     }),
   ],
   module: {
