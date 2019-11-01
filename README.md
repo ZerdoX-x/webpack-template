@@ -13,6 +13,20 @@ You only need [Node.js](https://nodejs.org) pre-installed and you’re good to g
 3. `npm run clean && npm i` Cleanup and install dependencies
 4. `mv ../web-project-starter ../<project_name>` Rename root directory of project
 
+## Tools and features
+- [Babel](https://babeljs.io)
+- [PostCSS](https://postcss.org)
+- [Stylelint](https://stylelint.io)
+- [Live Server](https://github.com/webpack/webpack-dev-server)
+- [SVG Sprites](https://css-tricks.com/svg-sprites-use-better-icon-fonts/)
+- [Image Compression](https://www.npmjs.com/package/image-webpack-loader)
+- [ESLint](https://eslint.org) //soon
+- [HTML Templating]() //soon
+- [BEM Methodology](https://en.bem.info) //soon
+- [ITCSS Architecture](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/) //soon
+- [HMR](https://webpack.js.org/concepts/hot-module-replacement/) //soon
+- [Caching](https://webpack.js.org/guides/caching/) //soon
+
 ## Structure of project
 
 __./webpack-template/__ _- root of your project_  
