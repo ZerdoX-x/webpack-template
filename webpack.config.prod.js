@@ -21,7 +21,14 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+        ],
+      }, {
         test: /\.css$/,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -34,6 +41,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
         ],
       }, {
         test: /\.(png|svg|jpg|gif)$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'file-loader',

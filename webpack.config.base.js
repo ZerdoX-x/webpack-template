@@ -29,6 +29,7 @@ module.exports = {
     rules: [
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'file-loader',
@@ -41,11 +42,13 @@ module.exports = {
         ],
       }, {
         test: /\.(csv|tsv)$/,
+        exclude: /node_modules/,
         use: [
           'csv-loader',
         ],
       }, {
         test: /\.xml$/,
+        exclude: /node_modules/,
         use: [
           'xml-loader',
         ],
