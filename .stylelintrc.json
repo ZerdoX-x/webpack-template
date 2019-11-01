@@ -200,7 +200,6 @@
         "unspecified": "bottom"
       }
     ],
-    "at-rule-empty-line-before": "always",
     "at-rule-name-case": "lower",
     "at-rule-no-unknown": true,
     "at-rule-no-vendor-prefix": true,
