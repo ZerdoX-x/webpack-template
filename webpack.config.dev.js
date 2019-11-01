@@ -5,6 +5,7 @@ const baseWebpackConfig = require('./webpack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
@@ -21,6 +22,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map'
+    }), new StylelintPlugin({
+      configFile: '.stylelintrc.json',
+      context: 'src',
+      files: '**/*.css',
+      emitWarning: true,
+      fix: true,
     }), new HtmlWebpackPlugin({
       template: 'src/views/index.html',
       minify: false,

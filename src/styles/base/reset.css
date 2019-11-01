@@ -89,7 +89,6 @@ figure,
 footer,
 header,
 hgroup,
-main,
 nav,
 section,
 summary,
@@ -106,12 +105,13 @@ video {
 
 /* Remove the gray background color from active links in IE 10. */
 a {
-  background: transparent;
   text-decoration: none;
+  background: transparent;
 }
 
 /* Removes default vertical scrollbar in IE6-9
    Improves readability and alignment browsers */
+
 textarea {
   overflow: auto;
   vertical-align: top;
