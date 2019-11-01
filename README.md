@@ -8,10 +8,10 @@ You only need [Node.js](https://nodejs.org) pre-installed and you’re good to g
 
 ## Downloading and setup
 
-1. `git clone https://github.com/ZerdoX-x/web-template.git` Download template
-2. `cd web-template` Move to project directory
+1. `git clone https://github.com/ZerdoX-x/webpack-template.git` Download template
+2. `cd webpack-template` Move to project directory
 3. `npm run clean && npm i` Cleanup and install dependencies
-4. `mv ../web-template ../<project_name>` Rename root directory of project
+4. `mv ../webpack-template ../<project_name>` Rename root directory of project
 
 ## Tools and features
 - [Babel](https://babeljs.io)
