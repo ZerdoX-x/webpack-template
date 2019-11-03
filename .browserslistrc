@@ -1,6 +1,12 @@
 # Supported browsers
 
+[production]
 last 5 version
 > 0.75%
 maintained node versions
 not dead
+
+[development]
+last 2 Chrome versions
+last 2 Firefox versions
+last 1 Safari version
