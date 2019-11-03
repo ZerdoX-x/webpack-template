@@ -1,0 +1,24 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules"
+  ],
+  "watch": [
+    "webpack.config.base.js",
+    "webpack.config.dev.js",
+    "webpack.config.prod.js",
+    ".babelrc",
+    ".browserslistrc",
+    ".stylelintignore",
+    ".stylelintrc.json",
+    "package.json",
+    "postcss.config.js"
+  ],
+  "events": {
+    "restart": "echo \"App restarted due to:\n'$FILENAME'\""
+  },
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

@@ -50,8 +50,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       {
         test: /\.css$/,
         exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
         use: [
           MiniCssExtractPlugin.loader,
+          'cache-loader',
           {
             loader: 'css-loader',
             options: {
@@ -63,9 +65,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       }, {
         test: /\.(png|svg|jpg|gif)$/,
         exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
         use: [
+          'cache-loader',
           {
-            loader: 'file-loader',
+          loader: 'file-loader',
             options: {
               name: '[path][name].[contenthash].[ext]',
               context: 'src/assets/img',

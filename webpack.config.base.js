@@ -11,6 +11,11 @@ module.exports = {
     filename: 'js/[name].[contenthash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  resolve: {
+    descriptionFiles: ['package.json'],
+    modules: ['node_modules'],
+    symlinks: false,
+  },
   optimization: {
     runtimeChunk: 'single',
     moduleIds: 'hashed',
@@ -38,7 +43,9 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
         use: [
+          'cache-loader',
           {
             loader: 'file-loader',
             options: {
@@ -51,13 +58,17 @@ module.exports = {
       }, {
         test: /\.(csv|tsv)$/,
         exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
         use: [
+          'cache-loader',
           'csv-loader',
         ],
       }, {
         test: /\.xml$/,
         exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
         use: [
+          'cache-loader',
           'xml-loader',
         ],
       },
