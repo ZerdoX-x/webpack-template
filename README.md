@@ -25,12 +25,11 @@ You only need [Node.js](https://nodejs.org) pre-installed and you’re good to g
 - [BEM Methodology](https://en.bem.info) //soon
 - [ITCSS Architecture](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/) //soon
 - [HMR](https://webpack.js.org/concepts/hot-module-replacement/) //soon
-- [Caching](https://webpack.js.org/guides/caching/) //soon
 
 ## Structure of project
 
 __./webpack-template/__ _- root of your project_  
-&nbsp;&nbsp;&nbsp;&nbsp;╰__dist/__ _- compiled project, result_  
+&nbsp;&nbsp;&nbsp;&nbsp;╰ __dist/__ _- compiled project, result_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __favicon/__ _- all generated favicon files for most browsers/platforms are here_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __js/__ _- compiled javascript_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __styles/__ _- compiled css_  

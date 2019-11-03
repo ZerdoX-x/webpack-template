@@ -8,19 +8,27 @@ module.exports = {
     main: './src/index.js',
   },
   output: {
-    filename: 'js/[name].bundle.js',
+    filename: 'js/[name].[contenthash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   optimization: {
+    runtimeChunk: 'single',
+    moduleIds: 'hashed',
     splitChunks: {
-      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     },
   },
   plugins: [
     new CleanWebpackPlugin({
 
     }), new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
+      filename: 'styles/[name].[contenthash].css',
     }), new CopyWebpackPlugin([
       { from: 'src/static/', to: '', ignore: ['*favicon*.*']},
     ])
@@ -34,7 +42,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name].[ext]',
+              name: '[path][name].[contenthash].[ext]',
               context: 'src/assets/fonts',
               outputPath: 'fonts',
             },
