@@ -9,11 +9,15 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
+  output: {
+    pathinfo: false,
+  },
   devtool: '#@cheap-module-eval-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     port: 8081,
     host: '0.0.0.0',
+    hot: true,
     overlay: {
       warnings: true,
       errors: true,

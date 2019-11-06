@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -8,7 +9,7 @@ module.exports = {
     main: './src/index.js',
   },
   output: {
-    filename: 'js/[name].[contenthash].bundle.js',
+    filename: 'js/[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
@@ -36,7 +37,9 @@ module.exports = {
       filename: 'styles/[name].[contenthash].css',
     }), new CopyWebpackPlugin([
       { from: 'src/static/', to: '', ignore: ['*favicon*.*']},
-    ])
+    ]), new webpack.ProvidePlugin({
+      
+    }),
   ],
   module: {
     rules: [
