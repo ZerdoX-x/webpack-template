@@ -67,7 +67,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           },
         ],
       }, {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpe?g|gif|svg)$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
         use: [
@@ -78,6 +78,19 @@ const devWebpackConfig = merge(baseWebpackConfig, {
               name: '[path][name].[contenthash].[ext]',
               context: 'src/assets/img',
               outputPath: 'img',
+            },
+          },
+        ],
+      }, {
+        test: /\.svg$/,
+        use: [
+          'cache-loader',
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              symbolId: '[name]',
+              extract: true,
+              spriteFilename: 'img/sprite.svg',
             },
           },
         ],

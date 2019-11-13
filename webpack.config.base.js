@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
   entry: {
@@ -12,6 +13,7 @@ module.exports = {
     filename: 'js/[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  target: 'browser',
   resolve: {
     descriptionFiles: ['package.json'],
     modules: ['node_modules'],
@@ -36,8 +38,11 @@ module.exports = {
     }), new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash].css',
     }), new CopyWebpackPlugin([
-      { from: 'src/static/', to: '', ignore: ['*favicon*.*']},
-    ]), new webpack.ProvidePlugin({
+      { from: 'src/static/', to: '', ignore: ['*favicon*.*'],},
+      { from: 'src/assets/img/**/*sprite*.svg', to: 'img',},
+    ]), new SpriteLoaderPlugin({
+
+    }), new webpack.ProvidePlugin({
       
     }),
   ],

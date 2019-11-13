@@ -65,7 +65,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
           'postcss-loader',
         ],
       }, {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpe?g|gif|svg)$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
         use: [
@@ -81,6 +81,24 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
             loader: 'image-webpack-loader',
             options: {
               
+            },
+          },
+        ],
+      }, {
+        test: /\.svg$/,
+        use: [
+          'cache-loader',
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              symbolId: '[name]',
+              extract: true,
+              spriteFilename: `${PATHS.dist.img}/sprite.svg`,
+            },
+          }, {
+            loader: 'svgo-loader',
+            options: {
+              externalConfig: '.svgo.json',
             },
           },
         ],
