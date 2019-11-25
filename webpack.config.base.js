@@ -13,7 +13,7 @@ module.exports = {
     filename: 'js/[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  target: 'browser',
+  target: 'web',
   resolve: {
     descriptionFiles: ['package.json'],
     modules: ['node_modules'],
