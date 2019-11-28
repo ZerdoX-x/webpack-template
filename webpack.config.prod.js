@@ -64,7 +64,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
           'postcss-loader',
         ],
       }, {
-        test: /\.(png|jpe?g|gif|svg)$/,
+        test: /\.(png|jpe?g|gif)$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
         use: [

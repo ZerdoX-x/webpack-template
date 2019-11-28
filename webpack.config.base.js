@@ -41,7 +41,7 @@ module.exports = {
       { from: 'src/static/', to: '', ignore: ['*favicon*.*'],},
       { from: 'src/assets/img/**/*sprite*.svg', to: 'img',},
     ]), new SpriteLoaderPlugin({
-
+      plainSprite: true,
     }), new webpack.ProvidePlugin({
       
     }),
@@ -79,7 +79,14 @@ module.exports = {
           'cache-loader',
           'xml-loader',
         ],
-      },
+      }, {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          'html-loader'
+        ],
+      }
     ],
   },
 };

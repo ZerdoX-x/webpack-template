@@ -33,7 +33,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       emitWarning: true,
       fix: true,
     }), new HtmlWebpackPlugin({
-      template: 'src/views/index.html',
+      template: 'src/views/index.ejs',
       minify: false,
     }), new HtmlBeautifyPlugin({
       config: {
@@ -84,7 +84,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           },
         ],
       }, {
-        test: /\.(png|jpe?g|gif|svg)$/,
+        test: /\.(png|jpe?g|gif)$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
         use: [
@@ -101,7 +101,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       }, {
         test: /\.svg$/,
         use: [
-          'cache-loader',
+          // 'cache-loader',
           {
             loader: 'svg-sprite-loader',
             options: {
