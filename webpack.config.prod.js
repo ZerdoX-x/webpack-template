@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
@@ -36,6 +37,8 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
       publicPath: '.',
       prefix: 'favicon/',
       outputPath: '/favicon',
+    }), new SpriteLoaderPlugin({
+      plainSprite: true,
     }),
   ],
   module: {
@@ -86,7 +89,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
       }, {
         test: /\.svg$/,
         use: [
-          'cache-loader',
+          // 'cache-loader',
           {
             loader: 'svg-sprite-loader',
             options: {
@@ -97,7 +100,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
           }, {
             loader: 'svgo-loader',
             options: {
-              externalConfig: '.svgo.json',
+              externalConfig: '.svgo.yaml',
             },
           },
         ],

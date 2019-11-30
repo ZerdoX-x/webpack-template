@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
@@ -47,6 +48,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           },
       },
       replace: [ ' type="text/javascript"' ],
+    }), new SpriteLoaderPlugin({
+      plainSprite: true,
     }),
   ],
   module: {
