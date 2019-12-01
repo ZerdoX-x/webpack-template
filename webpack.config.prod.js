@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const path = require('path');
 const baseWebpackConfig = require('./webpack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -39,7 +40,10 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
       outputPath: '/favicon',
     }), new SpriteLoaderPlugin({
       plainSprite: true,
-    }),
+    }), new CopyWebpackPlugin([
+      { from: 'src/static/', to: '', ignore: ['*favicon*.*'],},
+      { from: 'src/assets/img/**/*sprite*.svg', to: 'img',},
+    ]),
   ],
   module: {
     rules: [

@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const baseWebpackConfig = require('./webpack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
@@ -50,7 +51,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       replace: [ ' type="text/javascript"' ],
     }), new SpriteLoaderPlugin({
       plainSprite: true,
-    }),
+    }), new CopyWebpackPlugin([
+      { from: 'src/static/*favicon*.*', to: ''},
+      { from: 'src/assets/img/**/*sprite*.svg', to: 'img',},
+    ]),
   ],
   module: {
     rules: [
