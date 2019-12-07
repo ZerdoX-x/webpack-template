@@ -28,7 +28,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/views/index.html',
+      template: 'src/views/index.hbs',
       minify: {
         collapseWhitespace: true,
         removeComments: true,

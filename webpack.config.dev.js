@@ -37,7 +37,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       emitWarning: true,
       fix: true,
     }), new HtmlWebpackPlugin({
-      template: 'src/views/index.ejs',
+      template: 'src/views/index.hbs',
       minify: false,
     }), new HtmlBeautifyPlugin({
       config: {
