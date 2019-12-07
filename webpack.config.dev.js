@@ -1,15 +1,15 @@
-const merge = require('webpack-merge');
-const path = require('path');
 const webpack = require('webpack');
-const baseWebpackConfig = require('./webpack.config.base');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const merge = require('webpack-merge');
+const baseConfig = require('./webpack.config.base');
+const HtmlPlugin = require('html-webpack-plugin');
+const MiniCssPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const SpritePlugin = require('svg-sprite-loader/plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
-const StylelintPlugin = require('stylelint-webpack-plugin');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const Stylelint = require('stylelint-webpack-plugin');
 
-const devWebpackConfig = merge(baseWebpackConfig, {
+const devConfig = merge(baseConfig, {
   mode: 'development',
   output: {
     pathinfo: false,
@@ -30,15 +30,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map'
-    }), new StylelintPlugin({
+    }), new Stylelint({
       configFile: '.stylelintrc.json',
       context: 'src',
       files: '**/*.css',
       emitWarning: true,
       fix: true,
-    }), new HtmlWebpackPlugin({
+    }), new HtmlPlugin({
       template: 'src/views/index.hbs',
       minify: false,
+    }), new SpritePlugin({
+      plainSprite: true,
     }), new HtmlBeautifyPlugin({
       config: {
           html: {
@@ -51,12 +53,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           },
       },
       replace: [ ' type="text/javascript"' ],
-    }), new SpriteLoaderPlugin({
-      plainSprite: true,
-    }), new CopyWebpackPlugin([
+    }), new CopyPlugin([
       { from: '*favicon*.*', to: '', context: 'src/static'},
       { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/'},
-    ]), new MiniCssExtractPlugin({
+    ]), new MiniCssPlugin({
       filename: 'styles/[name].css',
     }),
   ],
@@ -84,7 +84,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
         use: [
-          MiniCssExtractPlugin.loader,
+          MiniCssPlugin.loader,
           'cache-loader',
           {
             loader: 'css-loader',
@@ -143,5 +143,5 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 });
 
 module.exports = new Promise((resolve, reject) => {
-  resolve(devWebpackConfig);
+  resolve(devConfig);
 });

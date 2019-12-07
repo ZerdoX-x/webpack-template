@@ -1,14 +1,15 @@
-const merge = require('webpack-merge');
+const webpack = require('webpack');
 const path = require('path');
-const baseWebpackConfig = require('./webpack.config.base');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const merge = require('webpack-merge');
+const baseConfig = require('./webpack.config.base');
+const HtmlPlugin = require('html-webpack-plugin');
+const MiniCssPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const SpritePlugin = require('svg-sprite-loader/plugin');
+const FaviconsPlugin = require('favicons-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
-const prodWebpackConfig = merge(baseWebpackConfig, {
+const prodConfig = merge(baseConfig, {
   mode: 'production',
   output: {
     filename: 'js/[name].[hash].bundle.js',
@@ -27,7 +28,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    new HtmlPlugin({
       template: 'src/views/index.hbs',
       minify: {
         collapseWhitespace: true,
@@ -37,17 +38,17 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true,
       },
-    }), new FaviconsWebpackPlugin({
+    }), new FaviconsPlugin({
       logo: './src/static/favicon.png',
       publicPath: '.',
       prefix: 'favicon/',
       outputPath: '/favicon',
-    }), new SpriteLoaderPlugin({
+    }), new SpritePlugin({
       plainSprite: true,
-    }), new CopyWebpackPlugin([
+    }), new CopyPlugin([
       { from: 'src/static/', to: '', ignore: ['*favicon*.*'],},
       { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/',},
-    ]), new MiniCssExtractPlugin({
+    ]), new MiniCssPlugin({
       filename: 'styles/[name].[contenthash].css',
     }),
   ],
@@ -66,7 +67,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
         use: [
-          MiniCssExtractPlugin.loader,
+          MiniCssPlugin.loader,
           'cache-loader',
           {
             loader: 'css-loader',
@@ -135,5 +136,5 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 });
 
 module.exports = new Promise((resolve, reject) => {
-  resolve(prodWebpackConfig);
+  resolve(prodConfig);
 });
