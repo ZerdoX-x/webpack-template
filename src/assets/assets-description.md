@@ -1,0 +1,1 @@
+1. Put all assets here, if you want to add something more than images and fonts, add rules to webpack configs.
