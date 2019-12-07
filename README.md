@@ -10,21 +10,23 @@ You only need [Node.js](https://nodejs.org) pre-installed and you’re good to g
 
 1. `git clone https://github.com/ZerdoX-x/webpack-template.git` Download template
 2. `cd webpack-template` Move to project directory
-3. `npm run clean && npm i` Cleanup and install dependencies
+3. `npm i && npm run clean` Cleanup and install dependencies
 4. `mv ../webpack-template ../<project_name>` Rename root directory of project
 
 ## Tools and features
-- [Babel](https://babeljs.io)
-- [PostCSS](https://postcss.org)
-- [Stylelint](https://stylelint.io)
-- [Live Server](https://github.com/webpack/webpack-dev-server)
-- [SVG Sprites](https://css-tricks.com/svg-sprites-use-better-icon-fonts/)
-- [Image Compression](https://www.npmjs.com/package/image-webpack-loader)
-- [ESLint](https://eslint.org) //soon
-- [HTML Templating]() //soon
-- [BEM Methodology](https://en.bem.info) //soon
-- [ITCSS Architecture](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/) //soon
-- [HMR](https://webpack.js.org/concepts/hot-module-replacement/) //soon
+
+- [Babel](https://babeljs.io) _//.babelrc_
+- [PostCSS](https://postcss.org) _//postcss.congig.json_
+- [Stylelint](https://stylelint.io) _//stylelintrc.json_
+- [Live Server](https://github.com/webpack/webpack-dev-server) _//in webpack.config.dev.js_
+- [SVG Sprites](https://css-tricks.com/svg-sprites-use-better-icon-fonts/) _//[generated inline for html](https://github.com/JetBrains/svg-sprite-loader/tree/master/examples/interop-with-html-webpack-plugin) using handlebars and extracted for css/js/etc. id = filename_
+- [Image Compression](https://www.npmjs.com/package/image-webpack-loader) _//in webpack.config.prod.js_
+- [ESLint](https://eslint.org)  _//.eslintrc.json_
+- [HTML Templating via Handlebars](https://handlebarsjs.com/) _//you may use ejs, pug or other templating engine, just configure webpack_
+- [BEM Methodology](https://en.bem.info) _//structure of this methodology in blocks folder_
+- [ITCSS Architecture](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/) _//soon_
+- [HMR](https://webpack.js.org/concepts/hot-module-replacement/) _//in webpack.config.dev.js_
+- [Code Splitting](https://webpack.js.org/guides/code-splitting/)
 
 ## Structure of project
 
@@ -33,17 +35,23 @@ __./webpack-template/__ _- root of your project_
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __favicon/__ _- all generated favicon files for most browsers/platforms are here_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __js/__ _- compiled javascript_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __styles/__ _- compiled css_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __images/__ _- images, svg sprites_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __fonts/__ _- fonts_  
 &nbsp;&nbsp;&nbsp;&nbsp;╰ __node_modules/__ _- all dependencies are here, don't touch this_  
 &nbsp;&nbsp;&nbsp;&nbsp;╰ __src/__ _- source, this is where you need to write code_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __assets/__ _- fonts, images, other static files_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __fonts/__ _- one font-family = one folder_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __fonts-master.css__ _- all fonts assemble to css_  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __images/__ _- create folders and put images in here, structure will be saved_  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __components/__ _- components/modules/blocks, header/footer/btn/social_link eg_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __images/__ _- create folders and put images in here, structure will be saved, svg pre-build sprites supported_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __*.blocks/__ _- blocks on certain level_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __<block_name>/__ _- directory of your block_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __<block_name>.js__ _- main file write js, import css, templates and other files here_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __<block_name>.*__ _- other techs used for implementing blocks_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __js/__ _- javascript source files and folders in here_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __helpers/__ _- your javascript helpers are here_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __modules/__ _- store your functionality to separate files in this folder and import them in the entry point file_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __vendor/__ _- vendor’s specific js_  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __commons.js__ _- main javascript file, you should import all javascript into here_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __commons.js__ _- main javascript file, you should import all javascript from relative directories into here_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __static/__ _- files will be copied to root of dist folder (favicon/robots.txt/sitemap/etc)_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __favicon.(png|svg)__ _- you need to put icon of your application here and name it 'favicon' (svg or png only)_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __humans.txt__ _- humans.txt file, [learn more](http://humanstxt.org)_  
@@ -56,7 +64,6 @@ __./webpack-template/__ _- root of your project_
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __style.css__ _- main css file, you should import all styles into here_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __views/__ _- layput files, html, templates, pages, etc_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __pages/__ _- pages files_  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __index.html__ _- page template_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __index.js__ _- webpack main entry point_  
 
 ## Scripts
