@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const { CleanPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -26,7 +26,7 @@ module.exports = {
     },
   },
   plugins: [
-    new CleanPlugin({
+    new CleanWebpackPlugin({
 
     }), new webpack.ProvidePlugin({
       

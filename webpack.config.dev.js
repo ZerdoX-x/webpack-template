@@ -111,6 +111,8 @@ const devConfig = merge(baseConfig, {
         ],
       }, {
         test: /\.svg$/,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
         use: [
           // 'cache-loader',
           {
@@ -123,9 +125,9 @@ const devConfig = merge(baseConfig, {
           },
         ],
       }, {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
+        include: path.resolve(__dirname, 'src/assets/fonts'),
         use: [
           'cache-loader',
           {
