@@ -46,7 +46,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
       plainSprite: true,
     }), new CopyWebpackPlugin([
       { from: 'src/static/', to: '', ignore: ['*favicon*.*'],},
-      { from: 'src/assets/img/**/*sprite*.svg', to: 'img',},
+      { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/',},
     ]), new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash].css',
     }),
