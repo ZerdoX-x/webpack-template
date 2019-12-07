@@ -7,10 +7,6 @@ module.exports = {
   entry: {
     main: './src/index.js',
   },
-  output: {
-    filename: 'js/[name].[hash].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
   target: 'web',
   resolve: {
     descriptionFiles: ['package.json'],
@@ -33,8 +29,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin({
 
-    }), new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash].css',
     }), new webpack.ProvidePlugin({
       
     }),
@@ -42,21 +36,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          'cache-loader',
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[path][name].[contenthash].[ext]',
-              context: 'src/assets/fonts',
-              outputPath: 'fonts',
-            },
-          },
-        ],
-      }, {
         test: /\.(csv|tsv)$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),

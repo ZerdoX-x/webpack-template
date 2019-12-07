@@ -13,6 +13,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
   output: {
     pathinfo: false,
+    filename: 'js/[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   devtool: '#@cheap-module-eval-source-map',
   devServer: {
@@ -54,7 +56,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }), new CopyWebpackPlugin([
       { from: 'src/static/*favicon*.*', to: ''},
       { from: 'src/assets/img/**/*sprite*.svg', to: 'img',},
-    ]),
+    ]), new MiniCssExtractPlugin({
+      filename: 'styles/[name].css',
+    }),
   ],
   module: {
     rules: [
@@ -99,7 +103,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           {
           loader: 'file-loader',
             options: {
-              name: '[path][name].[contenthash].[ext]',
+              name: '[path][name].[ext]',
               context: 'src/assets/img',
               outputPath: 'img',
             },
@@ -115,6 +119,21 @@ const devWebpackConfig = merge(baseWebpackConfig, {
               symbolId: '[name]',
               extract: true,
               spriteFilename: 'img/sprite.svg',
+            },
+          },
+        ],
+      }, {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          'cache-loader',
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+              context: 'src/assets/fonts',
+              outputPath: 'fonts',
             },
           },
         ],

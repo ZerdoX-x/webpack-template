@@ -10,6 +10,10 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
+  output: {
+    filename: 'js/[name].[hash].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
   optimization: {
     minimize: true,
     minimizer: [
@@ -43,7 +47,9 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
     }), new CopyWebpackPlugin([
       { from: 'src/static/', to: '', ignore: ['*favicon*.*'],},
       { from: 'src/assets/img/**/*sprite*.svg', to: 'img',},
-    ]),
+    ]), new MiniCssExtractPlugin({
+      filename: 'styles/[name].[contenthash].css',
+    }),
   ],
   module: {
     rules: [
@@ -99,12 +105,27 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
             options: {
               symbolId: '[name]',
               extract: true,
-              spriteFilename: `img/sprite.svg`,
+              spriteFilename: `img/sprite.[contenthash].svg`,
             },
           }, {
             loader: 'svgo-loader',
             options: {
               externalConfig: '.svgo.yaml',
+            },
+          },
+        ],
+      }, {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          'cache-loader',
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[contenthash].[ext]',
+              context: 'src/assets/fonts',
+              outputPath: 'fonts',
             },
           },
         ],
