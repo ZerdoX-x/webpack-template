@@ -1,1 +1,0 @@
-1. Learn more about components on [bem.info](https://en.bem.info/)

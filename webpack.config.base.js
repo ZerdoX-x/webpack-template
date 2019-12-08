@@ -57,13 +57,6 @@ module.exports = {
         use: [
           'html-loader'
         ],
-      }, {
-        test: /\.hbs$/,
-        exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          'handlebars-loader'
-        ],
       },
     ],
   },
