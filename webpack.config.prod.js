@@ -29,7 +29,7 @@ const prodConfig = merge(baseConfig, {
   },
   plugins: [
     new HtmlPlugin({
-      template: 'src/views/index.hbs',
+      template: 'src/views/index.ejs',
       minify: {
         collapseWhitespace: true,
         removeComments: true,

@@ -37,7 +37,7 @@ const devConfig = merge(baseConfig, {
       emitWarning: true,
       fix: true,
     }), new HtmlPlugin({
-      template: 'src/views/index.hbs',
+      template: 'src/views/index.ejs',
       minify: false,
     }), new SpritePlugin({
       plainSprite: true,

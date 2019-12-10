@@ -10,16 +10,21 @@
 </head>
 
 <body>
-{{#if htmlWebpackPlugin.files.sprites}}
+<!-- {{#if htmlWebpackPlugin.files.sprites}}
   {{#each htmlWebpackPlugin.files.sprites}}
     {{{this}}}
   {{/each}}
-{{/if}}
+{{/if}} -->
 
+<!-- <% if (htmlWebpackPlugin.files.sprites) { %>
+  <% for (var spriteFileName in htmlWebpackPlugin.files.sprites) { %>
+    <%= htmlWebpackPlugin.files.sprites[spriteFileName] %>
+  <% } %>
+<% } %>
 
 <svg>
   <use xlink:href="#"></use>
-</svg>
+</svg> -->
 
 </body>
 
