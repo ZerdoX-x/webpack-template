@@ -1,2 +1,0 @@
-1. Supported extensions: woff|woff2|eot|ttf|otf (edit in webpack.config.dev.js and webpack.config.prod.js).
-2. Create folders here and put all font files in them, add <font-name>.css, create font-face rule and then import this file in fonts-master.css (located in root of fonts folder).

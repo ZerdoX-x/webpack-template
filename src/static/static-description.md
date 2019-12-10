@@ -1,3 +1,0 @@
-1. All files from this will be copied by copy-webpack-plugin to the root of the production project (dist/).
-2. Favicon is generated in production mode, but it copies only in development mode (it's faster for development, you don't need to support all standarts while development).
-3. Favicon file should contain "favicon" to be detected by favicons-webpack-plugin and supported only png and svg extensions.
