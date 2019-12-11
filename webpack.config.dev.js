@@ -6,6 +6,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const SpritePlugin = require('svg-sprite-loader/plugin');
+const FaviconsPlugin = require('favicons-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const Stylelint = require('stylelint-webpack-plugin');
 
@@ -15,6 +16,7 @@ const devConfig = merge(baseConfig, {
     pathinfo: false,
     filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   devtool: '#@cheap-module-eval-source-map',
   devServer: {
@@ -54,9 +56,13 @@ const devConfig = merge(baseConfig, {
       },
       replace: [ ' type="text/javascript"' ],
     }), new CopyPlugin([
-      { from: '*favicon*.*', to: '', context: 'src/static'},
       { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/'},
-    ]), new MiniCssPlugin({
+    ]), new FaviconsPlugin({
+      logo: './src/static/favicon.png',
+      publicPath: '.',
+      prefix: 'favicon/',
+      outputPath: '/favicon',
+    }), new MiniCssPlugin({
       filename: 'styles/[name].css',
     }),
   ],

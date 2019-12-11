@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     app: './src/index.js',
   },
-  target: 'web',
+  // target: 'web',
   resolve: {
     descriptionFiles: ['package.json'],
     modules: ['node_modules'],

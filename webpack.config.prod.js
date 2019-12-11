@@ -14,6 +14,7 @@ const prodConfig = merge(baseConfig, {
   output: {
     filename: 'js/[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   optimization: {
     minimize: true,
