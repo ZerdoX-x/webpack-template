@@ -5,22 +5,16 @@
   "main": "index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "webpack --config webpack.config.prod.js",
-    "dev": "webpack-dev-server --open --progress --color --config webpack.config.dev.js",
-    "start": "cross-env NODE_ENV=development nodemon --exec \"webpack-dev-server --progress --color --config webpack.config.dev.js\"",
-    "*dev": "webpack --config webpack.config.dev.js",
+    "build": "cross-env NODE_ENV=production nodemon --exec \"webpack --config webpack.config.dev.js\"",
+    "dev": "cross-env NODE_ENV=development nodemon --exec \"webpack-dev-server --progress --color --config webpack.config.dev.js\"",
     "clean:dist": "rimraf dist/",
     "clean:info": "rimraf info/",
     "clean:md": "rimraf src/**/*.md",
     "clean:map": "rimraf dist/**/*.map",
-    "clean": "npm run clean:dist && npm run clean:info && npm run clean:md && npm run clean:map",
     "info:stats": "make-dir info && webpack-cli --profile --json > info/stats.json || true",
     "info:browsers": "make-dir info && browserslist > info/browserslist.txt",
     "info:versions": "make-dir info && echo 'Node:' > info/versions.txt && node -v >> info/versions.txt && echo 'NPM:' >> info/versions.txt && npm -v >> info/versions.txt && echo 'Webpack:' >> info/versions.txt && webpack -v >> info/versions.txt",
-    "info": "npm run info:stats && npm run info:browsers && npm run info:versions",
-    "prunecaches": "rimraf ./node_modules/.cache/",
-    "postinstall": "npm run prunecaches",
-    "postuninstall": "npm run prunecaches"
+    "info": "npm run info:stats && npm run info:browsers && npm run info:versions"
   },
   "keywords": [
     "webpack",
@@ -77,7 +71,7 @@
     "terser-webpack-plugin": "^2.2.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
+    "webpack-dev-server": "^3.10.1",
     "webpack-merge": "^4.2.2",
     "xml-loader": "^1.2.1"
   },

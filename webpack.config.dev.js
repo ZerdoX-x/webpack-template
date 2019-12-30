@@ -39,8 +39,14 @@ const devConfig = merge(baseConfig, {
       emitWarning: true,
       fix: true,
     }), new HtmlPlugin({
-      template: 'src/views/index.ejs',
+      template: 'src/views/layouts/main.ejs',
       minify: false,
+      templateParameters: {
+        'page': {
+          'filename': 'index',
+          'title': 'Home',
+        },
+      },
     }), new SpritePlugin({
       plainSprite: true,
     }), new HtmlBeautifyPlugin({
