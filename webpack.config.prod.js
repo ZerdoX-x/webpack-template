@@ -2,12 +2,13 @@ const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base');
-const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const SpritePlugin = require('svg-sprite-loader/plugin');
 const FaviconsPlugin = require('favicons-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlMinifierPlugin = require('html-minifier-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const prodConfig = merge(baseConfig, {
   mode: 'production',
@@ -29,16 +30,7 @@ const prodConfig = merge(baseConfig, {
     ],
   },
   plugins: [
-    new HtmlPlugin({
-      template: 'src/views/index.ejs',
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true,
-      },
+    new CleanWebpackPlugin({
     }), new FaviconsPlugin({
       logo: './src/static/favicon.png',
       publicPath: '.',
@@ -51,6 +43,8 @@ const prodConfig = merge(baseConfig, {
       { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/',},
     ]), new MiniCssPlugin({
       filename: 'styles/[name].[contenthash].css',
+    }), new HtmlMinifierPlugin({
+
     }),
   ],
   module: {

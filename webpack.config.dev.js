@@ -2,13 +2,12 @@ const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base');
-const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const SpritePlugin = require('svg-sprite-loader/plugin');
 const FaviconsPlugin = require('favicons-webpack-plugin');
-const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const Stylelint = require('stylelint-webpack-plugin');
+const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 
 const devConfig = merge(baseConfig, {
   mode: 'development',
@@ -38,29 +37,8 @@ const devConfig = merge(baseConfig, {
       files: '**/*.css',
       emitWarning: true,
       fix: true,
-    }), new HtmlPlugin({
-      template: 'src/views/layouts/main.ejs',
-      minify: false,
-      templateParameters: {
-        'page': {
-          'filename': 'index',
-          'title': 'Home',
-        },
-      },
     }), new SpritePlugin({
       plainSprite: true,
-    }), new HtmlBeautifyPlugin({
-      config: {
-          html: {
-            end_with_newline: false,
-            indent_size: 2,
-            indent_with_tabs: false,
-            indent_inner_html: false,
-            preserve_newlines: false,
-            unformatted: ['p', 'i', 'b', 's', 'span'],
-          },
-      },
-      replace: [ ' type="text/javascript"' ],
     }), new CopyPlugin([
       { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/'},
     ]), new FaviconsPlugin({
@@ -70,7 +48,9 @@ const devConfig = merge(baseConfig, {
       outputPath: '/favicon',
     }), new MiniCssPlugin({
       filename: 'styles/[name].css',
-    }),
+    }), new HtmlBeautifyPlugin({
+      
+    })
   ],
   module: {
     rules: [

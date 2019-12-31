@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -26,10 +26,26 @@ module.exports = {
     },
   },
   plugins: [
-    new CleanWebpackPlugin({
-
-    }), new webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({
       
+    }), new HtmlPlugin({
+      template: 'src/views/layouts/main.ejs',
+      minify: false,
+      templateParameters: (compilation, assets, assetTags, options) => {
+        return {
+          compilation,
+          webpackConfig: compilation.options,
+          htmlWebpackPlugin: {
+            tags: assetTags,
+            files: assets,
+            options,
+          },
+          page: {
+            title: 'Home',
+            filename: 'index',
+          },
+        };
+      },
     }),
   ],
   module: {
@@ -55,7 +71,7 @@ module.exports = {
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
         use: [
-          'html-loader'
+          'html-loader',
         ],
       },
     ],
