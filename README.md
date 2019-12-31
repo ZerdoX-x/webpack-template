@@ -19,14 +19,10 @@ You only need [Node.js](https://nodejs.org) pre-installed and you’re good to g
 - [PostCSS](https://postcss.org) _//postcss.congig.json_
 - [Stylelint](https://stylelint.io) _//stylelintrc.json_
 - [Live Server](https://github.com/webpack/webpack-dev-server) _//in webpack.config.dev.js_
-- [SVG Sprites](https://css-tricks.com/svg-sprites-use-better-icon-fonts/) _//[generated inline for html](https://github.com/JetBrains/svg-sprite-loader/tree/master/examples/interop-with-html-webpack-plugin) using handlebars and extracted for css/js/etc. id = filename_
+- [SVG Sprites](https://css-tricks.com/svg-sprites-use-better-icon-fonts/) _//[generated inline for html, extracted for css/js](https://github.com/JetBrains/svg-sprite-loader/tree/master/examples/interop-with-html-webpack-plugin) id = filename_
 - [Image Compression](https://www.npmjs.com/package/image-webpack-loader) _//in webpack.config.prod.js_
 - [ESLint](https://eslint.org)  _//.eslintrc.json_
-- [HTML Templating via Handlebars](https://handlebarsjs.com/) _//you may use ejs, pug or other templating engine, just configure webpack_
 - [BEM Methodology](https://en.bem.info) _//structure of this methodology in blocks folder_
-- [ITCSS Architecture](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/) _//soon_
-- [HMR](https://webpack.js.org/concepts/hot-module-replacement/) _//in webpack.config.dev.js_
-- [Code Splitting](https://webpack.js.org/guides/code-splitting/)
 
 ## Structure of project
 
@@ -35,7 +31,7 @@ __./webpack-template/__ _- root of your project_
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __favicon/__ _- all generated favicon files for most browsers/platforms are here_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __js/__ _- compiled javascript_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __styles/__ _- compiled css_  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __images/__ _- images, svg sprites_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __img/__ _- images, svg sprites_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __fonts/__ _- fonts_  
 &nbsp;&nbsp;&nbsp;&nbsp;╰ __node_modules/__ _- all dependencies are here, don't touch this_  
 &nbsp;&nbsp;&nbsp;&nbsp;╰ __src/__ _- source, this is where you need to write code_  
@@ -66,22 +62,14 @@ __./webpack-template/__ _- root of your project_
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __vendor/__ _- vendor’s specific css_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __style.css__ _- main css file, you should import all styles into here_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __views/__ _- layput files, html, templates, pages, etc_  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __pages/__ _- pages files_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __layouts/__ _- template files_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __main.ejs__ _- page template_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __pages/__ _- pages files, you can add pages in base config_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __index.html__ _- index page_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __index.js__ _- webpack main entry point_  
 
 ## Scripts
 
 - `build` Build/deploy/release project
-- `dev` Start server with autocompile, use it for development
-- `*dev` Same as `dev` but without server
-
-- `clean:dist` Delete dist
-- `clean:info` Delete info
-- `clean:md` Delete all .md files in src 
-- `clean:map` Delete all .map files in dist
-- `clean` Cleanup all project (all clean tasks)
-
-- `info:stats` Create stats.json, you may use it [as described in documentation](https://webpack.js.org/guides/code-splitting/#bundle-analysis)
-- `info:browsers` Create browserslist.txt, there are all supported browsers [(edit .browserslistrc)](https://github.com/browserslist/browserslist)
-- `info:versions` Create versions.txt, there are versions of Node.js, NPM, Webpack. To find out about versions: `npx <name> -v` or search it in package-lock.json
-- `info` Runs all info tasks
+- `dev` Start server with autocompile, use it for development, open 0.0.0.0:8081 or localhost:8081
+Tip: you can find out your pc's address with `hostname -I` and use it like this `<hostname -i>:8081` from your phone for example (gadgets need to be connected to one wi-fi)

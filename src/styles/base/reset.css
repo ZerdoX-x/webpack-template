@@ -116,3 +116,8 @@ textarea {
   overflow: auto;
   vertical-align: top;
 }
+
+/* Hide svg sprite*/
+body > svg:first-of-type {
+  display: none;
+}

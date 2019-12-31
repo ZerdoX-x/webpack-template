@@ -22,7 +22,7 @@ const devConfig = merge(baseConfig, {
     contentBase: path.resolve(__dirname, 'dist'),
     port: 8081,
     host: '0.0.0.0',
-    hot: true,
+    // hot: true,
     overlay: {
       warnings: true,
       errors: true,

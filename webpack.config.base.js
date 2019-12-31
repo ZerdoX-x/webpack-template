@@ -51,22 +51,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(csv|tsv)$/,
-        exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          'cache-loader',
-          'csv-loader',
-        ],
-      }, {
-        test: /\.xml$/,
-        exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          'cache-loader',
-          'xml-loader',
-        ],
-      }, {
         test: /\.html$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
