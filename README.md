@@ -72,4 +72,4 @@ __./webpack-template/__ _- root of your project_
 
 - `build` Build/deploy/release project
 - `dev` Start server with autocompile, use it for development, open 0.0.0.0:8081 or localhost:8081
-Tip: you can find out your pc's address with `hostname -I` and use it like this `<hostname -i>:8081` from your phone for example (gadgets need to be connected to one wi-fi)
+Tip: you can find out your pc's address with `hostname -I` and use it like this `<hostname -I>:8081` from your phone for example (gadgets need to be connected to one wi-fi)

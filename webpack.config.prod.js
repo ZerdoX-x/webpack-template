@@ -8,6 +8,7 @@ const SpritePlugin = require('svg-sprite-loader/plugin');
 const FaviconsPlugin = require('favicons-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlMinifierPlugin = require('html-minifier-webpack-plugin');
+const htmlMinifierConfig = require('./.htmlminrc.json');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const prodConfig = merge(baseConfig, {
@@ -43,9 +44,9 @@ const prodConfig = merge(baseConfig, {
       { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/',},
     ]), new MiniCssPlugin({
       filename: 'styles/[name].[contenthash].css',
-    }), new HtmlMinifierPlugin({
-
-    }),
+    }), new HtmlMinifierPlugin(
+      htmlMinifierConfig
+    ),
   ],
   module: {
     rules: [
