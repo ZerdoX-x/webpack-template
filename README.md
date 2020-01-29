@@ -18,7 +18,7 @@ You only need [Node.js](https://nodejs.org) pre-installed and you’re good to g
 - [Babel](https://babeljs.io) _//.babelrc_
 - [PostCSS](https://postcss.org) _//postcss.congig.json_
 - [Stylelint](https://stylelint.io) _//stylelintrc.json_
-- [Live Server](https://github.com/webpack/webpack-dev-server) _//in webpack.config.dev.js_
+- [Express Server](https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334) _//in webpack.config.server.js_
 - [SVG Sprites](https://css-tricks.com/svg-sprites-use-better-icon-fonts/) _//[generated inline for html, extracted for css/js](https://github.com/JetBrains/svg-sprite-loader/tree/master/examples/interop-with-html-webpack-plugin) id = filename_
 - [Image Compression](https://www.npmjs.com/package/image-webpack-loader) _//in webpack.config.prod.js_
 - [ESLint](https://eslint.org)  _//.eslintrc.json_
@@ -51,6 +51,9 @@ __./webpack-template/__ _- root of your project_
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __modules/__ _- store your functionality to separate files in this folder and import them in the entry point file_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __vendor/__ _- vendor’s specific js_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __commons.js__ _- main javascript file, you should import all javascript from relative directories into here_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __server/__ _- servers, write your backend here_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __devServer.js__ _- server for development_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __prodServer.js__ _- server for production_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __static/__ _- files will be copied to root of dist folder (favicon/robots.txt/sitemap/etc)_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __favicon.(png|svg)__ _- you need to put icon of your application here and name it 'favicon' (svg or png only)_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __humans.txt__ _- humans.txt file, [learn more](http://humanstxt.org)_  
@@ -66,6 +69,7 @@ __./webpack-template/__ _- root of your project_
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __main.ejs__ _- page template_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __pages/__ _- pages files, you can add pages in base config_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __index.html__ _- index page_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __pages.json__ _- describe your pages here to automatically add them to webpack config files_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╰ __index.js__ _- webpack main entry point_  
 
 ## Scripts
@@ -73,3 +77,4 @@ __./webpack-template/__ _- root of your project_
 - `build` Build/deploy/release project
 - `dev` Start server with autocompile, use it for development, open 0.0.0.0:8081 or localhost:8081
 Tip: you can find out your pc's address with `hostname -I` and use it like this `<hostname -I>:8081` from your phone for example (gadgets need to be connected to one wi-fi)
+In windows you can you ipconfig command

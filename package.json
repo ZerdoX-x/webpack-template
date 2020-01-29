@@ -4,8 +4,9 @@
   "description": "This is my webpack template I use for each project",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "dev": "cross-env NODE_ENV=development nodemon --exec \"webpack-dev-server --progress --color --config webpack.config.dev.js\""
+    "build:prod": "rm -rf dist && webpack --mode production --config webpack.config.server.js && cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build:dev": "webpack --mode development --config webpack.config.server.js",
+    "start": "node ./dist/server.js"
   },
   "keywords": [
     "webpack",
@@ -60,8 +61,11 @@
     "terser-webpack-plugin": "^2.3.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1",
-    "webpack-merge": "^4.2.2"
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-node-externals": "^1.7.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
