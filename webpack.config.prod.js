@@ -1,18 +1,21 @@
 const webpack = require('webpack');
 const path = require('path');
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.config.base');
 const MiniCssPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const SpritePlugin = require('svg-sprite-loader/plugin');
 const FaviconsPlugin = require('favicons-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 const HtmlMinifierPlugin = require('html-minifier-webpack-plugin');
 const htmlMinifierConfig = require('./.htmlminrc.json');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const prodConfig = merge(baseConfig, {
+module.exports = {
   mode: 'production',
+  target: 'web',
+  entry: {
+    app: './src/index.js',
+  },
   output: {
     filename: 'js/[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -30,8 +33,16 @@ const prodConfig = merge(baseConfig, {
       }),
     ],
   },
+  resolve: {
+    descriptionFiles: ['package.json'],
+    modules: ['node_modules'],
+    symlinks: false,
+  },
   plugins: [
-    new CleanWebpackPlugin({
+    new webpack.ProvidePlugin({
+      
+    }), new MiniCssPlugin({
+      filename: 'styles/[name].[contenthash].css',
     }), new FaviconsPlugin({
       logo: './src/static/favicon.png',
       publicPath: '.',
@@ -40,11 +51,9 @@ const prodConfig = merge(baseConfig, {
     }), new SpritePlugin({
       plainSprite: true,
     }), new CopyPlugin([
-      { from: 'src/static/', to: '', ignore: ['*favicon*.*'],},
-      { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/',},
-    ]), new MiniCssPlugin({
-      filename: 'styles/[name].[contenthash].css',
-    }), new HtmlMinifierPlugin(
+      { from: 'src/static/', to: '', ignore: ['*favicon*.*'], },
+      { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/', },
+    ]), new HtmlMinifierPlugin(
       htmlMinifierConfig
     ),
   ],
@@ -126,11 +135,14 @@ const prodConfig = merge(baseConfig, {
             },
           },
         ],
+      }, {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          'html-loader',
+        ],
       },
     ],
   },
-});
-
-module.exports = new Promise((resolve, reject) => {
-  resolve(prodConfig);
-});
+};

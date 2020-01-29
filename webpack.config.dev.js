@@ -1,36 +1,41 @@
 const webpack = require('webpack');
 const path = require('path');
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.config.base');
-const MiniCssPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const SpritePlugin = require('svg-sprite-loader/plugin');
 const FaviconsPlugin = require('favicons-webpack-plugin');
 const Stylelint = require('stylelint-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 
-const devConfig = merge(baseConfig, {
+
+module.exports = {
   mode: 'development',
+  target: 'web',
+  entry: {
+    app: [
+      './src/index.js',
+      'webpack-hot-middleware/client',
+    ],
+  },
   output: {
     pathinfo: false,
     filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
-  devtool: '#@cheap-module-eval-source-map',
-  devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
-    port: 8081,
-    host: '0.0.0.0',
-    // hot: true,
-    overlay: {
-      warnings: true,
-      errors: true,
-    },
+  resolve: {
+    descriptionFiles: ['package.json'],
+    modules: ['node_modules'],
+    symlinks: false,
   },
+  devtool: '#@cheap-module-eval-source-map',
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map'
+    }), new webpack.ProvidePlugin({
+      
+    }), new SpritePlugin({
+      plainSprite: true,
     }), new Stylelint({
       configFile: '.stylelintrc.json',
       context: 'src',
@@ -46,18 +51,26 @@ const devConfig = merge(baseConfig, {
       publicPath: '.',
       prefix: 'favicon/',
       outputPath: '/favicon',
-    }), new MiniCssPlugin({
-      filename: 'styles/[name].css',
     }), new HtmlBeautifyPlugin({
-      
-    })
+      config: {
+        html: {
+          end_with_newline: false,
+          indent_size: 2,
+          indent_with_tabs: false,
+          indent_inner_html: false,
+          preserve_newlines: false,
+          unformatted: ['p', 'i', 'b', 's', 'span'],
+        },
+      },
+    }), new webpack.HotModuleReplacementPlugin({
+
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         use: [
           'cache-loader',
           'babel-loader',
@@ -74,22 +87,14 @@ const devConfig = merge(baseConfig, {
       }, {
         test: /\.css$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         use: [
-          MiniCssPlugin.loader,
           'cache-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              sourceMap: true,
-            },
-          },
+          'style-loader',
+          'css-loader',
         ],
       }, {
         test: /\.(png|jpe?g|gif)$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         use: [
           'cache-loader',
           {
@@ -104,7 +109,6 @@ const devConfig = merge(baseConfig, {
       }, {
         test: /\.svg$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         use: [
           // 'cache-loader',
           {
@@ -117,9 +121,8 @@ const devConfig = merge(baseConfig, {
           },
         ],
       }, {
-        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src/assets/fonts'),
         use: [
           'cache-loader',
           {
@@ -131,11 +134,15 @@ const devConfig = merge(baseConfig, {
             },
           },
         ],
+      }, {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
       },
     ],
   },
-});
-
-module.exports = new Promise((resolve, reject) => {
-  resolve(devConfig);
-});
+};
