@@ -6,6 +6,7 @@ const FaviconsPlugin = require('favicons-webpack-plugin');
 const Stylelint = require('stylelint-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
+const pages = require('./src/views/pages.json');
 
 
 module.exports = {
@@ -42,8 +43,26 @@ module.exports = {
       files: '**/*.css',
       emitWarning: true,
       fix: true,
-    }), new SpritePlugin({
-      plainSprite: true,
+    }), ...pages.map((page) => {
+      return new HtmlPlugin({
+        template: 'src/views/layouts/main.ejs',
+        minify: false,
+        excludeChunks: [
+          'server',
+        ],
+        templateParameters: (compilation, assets, assetTags, options) => {
+          return {
+            compilation,
+            webpackConfig: compilation.options,
+            htmlWebpackPlugin: {
+              tags: assetTags,
+              files: assets,
+              options,
+            },
+            page: page,
+          };
+        },
+      })
     }), new CopyPlugin([
       { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/'},
     ]), new FaviconsPlugin({

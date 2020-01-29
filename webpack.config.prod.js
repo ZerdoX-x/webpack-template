@@ -8,7 +8,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HtmlMinifierPlugin = require('html-minifier-webpack-plugin');
 const htmlMinifierConfig = require('./.htmlminrc.json');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const pages = require('./src/views/pages.json');
 
 module.exports = {
   mode: 'production',
@@ -43,6 +43,23 @@ module.exports = {
       
     }), new MiniCssPlugin({
       filename: 'styles/[name].[contenthash].css',
+    }), ...pages.map((page) => {
+      return new HtmlPlugin({
+        template: 'src/views/layouts/main.ejs',
+        minify: false,
+        templateParameters: (compilation, assets, assetTags, options) => {
+          return {
+            compilation,
+            webpackConfig: compilation.options,
+            htmlWebpackPlugin: {
+              tags: assetTags,
+              files: assets,
+              options,
+            },
+            page: page,
+          };
+        },
+      })
     }), new FaviconsPlugin({
       logo: './src/static/favicon.png',
       publicPath: '.',
@@ -62,7 +79,6 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         use: [
           'cache-loader',
           'babel-loader',
@@ -70,7 +86,6 @@ module.exports = {
       }, {
         test: /\.css$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         use: [
           MiniCssPlugin.loader,
           'cache-loader',
@@ -85,7 +100,6 @@ module.exports = {
       }, {
         test: /\.(png|jpe?g|gif)$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         use: [
           'cache-loader',
           {
@@ -104,6 +118,7 @@ module.exports = {
         ],
       }, {
         test: /\.svg$/,
+        exclude: /node_modules/,
         use: [
           // 'cache-loader',
           {
@@ -123,7 +138,6 @@ module.exports = {
       }, {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         use: [
           'cache-loader',
           {
@@ -138,7 +152,6 @@ module.exports = {
       }, {
         test: /\.html$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         use: [
           'html-loader',
         ],
