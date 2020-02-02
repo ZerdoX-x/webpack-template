@@ -1,10 +1,10 @@
-const path = require('path')
-const nodeExternals = require('webpack-node-externals')
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = (env, {mode}) => {
   const SERVER_PATH = (mode === 'production') ?
     './src/server/prodServer.js' :
-    './src/server/devServer.js'
+    './src/server/devServer.js';
 
   return ({
     entry: {
@@ -28,10 +28,10 @@ module.exports = (env, {mode}) => {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader"
+            loader: 'babel-loader'
           }
         }
       ]
     }
-  })
-}
+  });
+};

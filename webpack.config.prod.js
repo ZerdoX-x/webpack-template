@@ -59,7 +59,7 @@ module.exports = {
             page: page,
           };
         },
-      })
+      });
     }), new FaviconsPlugin({
       logo: './src/static/favicon.png',
       publicPath: '.',
@@ -126,7 +126,7 @@ module.exports = {
             options: {
               symbolId: '[name]',
               extract: true,
-              spriteFilename: `img/sprite.[contenthash].svg`,
+              spriteFilename: 'img/sprite.[contenthash].svg',
             },
           }, {
             loader: 'svgo-loader',

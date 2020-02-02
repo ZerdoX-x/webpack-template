@@ -29,7 +29,7 @@ module.exports = {
     modules: ['node_modules'],
     symlinks: false,
   },
-  devtool: '#@cheap-module-eval-source-map',
+  devtool: 'eval-cheap-module-source-map',
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map'
@@ -62,7 +62,7 @@ module.exports = {
             page: page,
           };
         },
-      })
+      });
     }), new CopyPlugin([
       { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/'},
     ]), new FaviconsPlugin({
@@ -117,7 +117,7 @@ module.exports = {
         use: [
           'cache-loader',
           {
-          loader: 'file-loader',
+            loader: 'file-loader',
             options: {
               name: '[path][name].[ext]',
               context: 'src/assets/img',

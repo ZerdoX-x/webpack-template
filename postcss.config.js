@@ -1,4 +1,4 @@
-module.exports = ({ env }) => ({
+module.exports = () => ({
   plugins: [
     require('autoprefixer')({
     }), require('cssnano')({
@@ -10,4 +10,4 @@ module.exports = ({ env }) => ({
     }), require('css-mqpacker')({
     }),
   ],
-})
+});

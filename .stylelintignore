@@ -3,8 +3,4 @@ dist
 public
 dest
 
-node_modules
-
-*.js
-
 variables.css

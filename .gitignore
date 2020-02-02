@@ -5,6 +5,8 @@ dest/
 
 node_modules/
 
+.idea/
+
 logs/
 *.log
 
