@@ -8,10 +8,11 @@
     "webpack.config.base.js",
     "webpack.config.dev.js",
     "webpack.config.prod.js",
+    "src/server",
     ".babelrc",
     ".browserslistrc",
     ".stylelintignore",
-    ".stylelintrc.json",
+    ".stylelintrc",
     "package.json",
     "postcss.config.js"
   ],

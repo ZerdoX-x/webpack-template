@@ -2,11 +2,12 @@
   "name": "webpack-template",
   "version": "1.0.0",
   "description": "This is my webpack template I use for each project",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "prod": "rm -rf dist && webpack --mode production --config webpack.config.server.js && cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "dev": "webpack --mode development --config webpack.config.server.js",
-    "start": "node ./dist/server.js"
+    "watch": "nodemon --exec 'npm run dev && node dist/server'",
+    "start": "node dist/server"
   },
   "keywords": [
     "webpack",

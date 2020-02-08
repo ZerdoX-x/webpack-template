@@ -1,14 +1,12 @@
-import path from 'path';
-import express from 'express';
-const app = express(),
-  DIST_DIR = __dirname,
-  HTML_FILE = path.join(DIST_DIR, 'index.html');
+const path = require('path');
+const express = require('express');
+const app = express();
 
-import webpack from 'webpack';
-import devMiddleware from 'webpack-dev-middleware';
-import hotMiddleware from 'webpack-hot-middleware';
-import config from '../../webpack.config.dev.js';
-const compiler = webpack(config, null);
+const webpack = require('webpack');
+const devMiddleware = require('webpack-dev-middleware');
+const hotMiddleware = require('webpack-hot-middleware');
+const config = require('../../webpack.config.dev.js');
+const compiler = webpack(config);
 
 app.use(devMiddleware(compiler, {
   publicPath: '/',
@@ -21,10 +19,8 @@ app.use(hotMiddleware(compiler, {
 
 
 app.get('*', (req, res, next) => {
-  compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {
-    if (err) {
-      return next(err);
-    }
+  compiler.outputFileSystem.readFile(path.join(__dirname, 'index.html'), (err, result) => {
+    if (err) return next(err);
     res.set('content-type', 'text/html');
     res.send(result);
     res.end();

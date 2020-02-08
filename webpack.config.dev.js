@@ -38,7 +38,7 @@ module.exports = {
     }), new SpritePlugin({
       plainSprite: true,
     }), new Stylelint({
-      configFile: '.stylelintrc.json',
+      configFile: '.stylelintrc',
       context: 'src',
       files: '**/*.css',
       emitWarning: true,

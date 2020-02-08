@@ -1,15 +1,11 @@
-import path from 'path';
-import express from 'express';
+const path = require('path');
+const express = require('express');
+const app = express();
 
-const app = express(),
-  DIST_DIR = __dirname,
-  HTML_FILE = path.join(DIST_DIR, 'index.html');
-
-
-app.use(express.static(DIST_DIR));
+app.use(express.static(__dirname));
 
 app.get('*', (req, res) => {
-  res.sendFile(HTML_FILE);
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 const PORT = process.env.PORT || 8081;
