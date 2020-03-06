@@ -8,8 +8,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HtmlMinifierPlugin = require('html-minifier-webpack-plugin');
 const htmlMinifierConfig = require('./.htmlminrc.json');
-const pages = require('./src/views/pages.json');
+const pages = require('./pages.json');
 const aliases = require('./aliases.json');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   mode: 'production',
@@ -62,7 +63,8 @@ module.exports = {
           };
         },
       });
-    }), new FaviconsPlugin({
+    }), new VueLoaderPlugin(
+    ), new FaviconsPlugin({
       logo: './src/static/favicon.png',
       publicPath: '.',
       prefix: 'favicon/',

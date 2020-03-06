@@ -6,7 +6,7 @@ const FaviconsPlugin = require('favicons-webpack-plugin');
 const Stylelint = require('stylelint-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
-const pages = require('./src/views/pages.json');
+const pages = require('./pages.json');
 const aliases = require('./aliases.json');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -65,7 +65,8 @@ module.exports = {
           };
         },
       });
-    }), new CopyPlugin([
+    }), new VueLoaderPlugin(
+    ), new CopyPlugin([
       { from: 'img/**/*sprite*.svg', to: '', context: 'src/assets/'},
     ]), new FaviconsPlugin({
       logo: './src/static/favicon.png',
@@ -83,8 +84,7 @@ module.exports = {
           unformatted: ['p', 'i', 'b', 's', 'span'],
         },
       },
-    }), new VueLoaderPlugin(
-    ), new webpack.HotModuleReplacementPlugin({
+    }), new webpack.HotModuleReplacementPlugin({
 
     }),
   ],
