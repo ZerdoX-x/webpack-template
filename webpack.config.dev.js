@@ -7,7 +7,8 @@ const Stylelint = require('stylelint-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const pages = require('./src/views/pages.json');
-
+const aliases = require('./aliases.json');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   mode: 'development',
@@ -20,13 +21,14 @@ module.exports = {
   },
   output: {
     pathinfo: false,
-    filename: 'js/[name].bundle.js',
+    filename: 'client/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
   resolve: {
     descriptionFiles: ['package.json'],
     modules: ['node_modules'],
+    alias: aliases,
     symlinks: false,
   },
   devtool: 'eval-cheap-module-source-map',
@@ -34,7 +36,7 @@ module.exports = {
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map'
     }), new webpack.ProvidePlugin({
-      
+
     }), new SpritePlugin({
       plainSprite: true,
     }), new Stylelint({
@@ -81,7 +83,8 @@ module.exports = {
           unformatted: ['p', 'i', 'b', 's', 'span'],
         },
       },
-    }), new webpack.HotModuleReplacementPlugin({
+    }), new VueLoaderPlugin(
+    ), new webpack.HotModuleReplacementPlugin({
 
     }),
   ],
@@ -108,7 +111,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'cache-loader',
-          'style-loader',
+          'vue-style-loader',
           'css-loader',
         ],
       }, {
@@ -161,7 +164,15 @@ module.exports = {
             loader: 'html-loader',
           },
         ],
-      },
+      }, {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'vue-loader'
+          }
+        ]
+      }
     ],
   },
 };

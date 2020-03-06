@@ -1,0 +1,10 @@
+{
+  "Assets": "path.resolve(__dirname, 'src', 'assets')",
+  "Components": "path.resolve(__dirname, 'src', 'components')",
+  "Client": "path.resolve(__dirname, 'src', 'Client')",
+  "Server": "path.resolve(__dirname, 'src', 'server')",
+  "Static": "path.resolve(__dirname, 'src', 'static')",
+  "Styles": "path.resolve(__dirname, 'src', 'styles')",
+  "Views": "path.resolve(__dirname, 'src', 'views')",
+  "@": "path.resolve(__dirname, 'src')"
+}

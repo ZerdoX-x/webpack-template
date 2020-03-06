@@ -1,4 +1,4 @@
-import './js/common';
+import './client/common';
 import './styles/style.css';
 function requireAll(r) {
   r.keys().forEach(r);

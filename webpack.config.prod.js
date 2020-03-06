@@ -9,6 +9,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const HtmlMinifierPlugin = require('html-minifier-webpack-plugin');
 const htmlMinifierConfig = require('./.htmlminrc.json');
 const pages = require('./src/views/pages.json');
+const aliases = require('./aliases.json');
 
 module.exports = {
   mode: 'production',
@@ -17,7 +18,7 @@ module.exports = {
     app: './src/index.js',
   },
   output: {
-    filename: 'js/[name].[hash].bundle.js',
+    filename: 'client/[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
@@ -36,11 +37,12 @@ module.exports = {
   resolve: {
     descriptionFiles: ['package.json'],
     modules: ['node_modules'],
+    alias: aliases,
     symlinks: false,
   },
   plugins: [
     new webpack.ProvidePlugin({
-      
+
     }), new MiniCssPlugin({
       filename: 'styles/[name].[contenthash].css',
     }), ...pages.map((page) => {
@@ -112,7 +114,7 @@ module.exports = {
           }, {
             loader: 'image-webpack-loader',
             options: {
-              
+
             },
           },
         ],
